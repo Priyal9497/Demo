@@ -1,15 +1,159 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
 
-<h2>Welcome</h2>
+<div class="text-center">
 
-<p>Employee Management System using Flask</p>
+    <h1 class="display-4 fw-bold">
+        Employee Management System
+    </h1>
 
-<a href="/add">Add Employee</a>
+    <p class="lead">
+        A Flask CRUD Application with SQLite
+    </p>
 
-<br><br>
+</div>
 
-<a href="/employees">View Employees</a>
+<hr>
+
+<div class="row mt-5">
+
+    <div class="col-md-4">
+
+        <div class="card shadow">
+
+            <div class="card-body text-center">
+
+                <h3>Add Employee</h3>
+
+                <p>
+                    Add a new employee to the database.
+                </p>
+
+                <a href="/add" class="btn btn-primary">
+                    Add Employee
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card shadow">
+
+            <div class="card-body text-center">
+
+                <h3>View Employees</h3>
+
+                <p>
+                    View all employees.
+                </p>
+
+                <a href="/employees" class="btn btn-success">
+                    View Employees
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card shadow">
+
+            <div class="card-body text-center">
+
+                <h3>Search Employee</h3>
+
+                <p>
+                    Search employees by name.
+                </p>
+
+                <a href="/employees" class="btn btn-warning">
+                    Search
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<hr class="my-5">
+
+<div class="row text-center">
+
+    <div class="col-md-3">
+
+        <div class="card bg-primary text-white">
+
+            <div class="card-body">
+
+                <h3>CRUD</h3>
+
+                <p>Create, Read, Update, Delete</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card bg-success text-white">
+
+            <div class="card-body">
+
+                <h3>SQLite</h3>
+
+                <p>Database Storage</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card bg-warning">
+
+            <div class="card-body">
+
+                <h3>Flask</h3>
+
+                <p>Python Web Framework</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card bg-danger text-white">
+
+            <div class="card-body">
+
+                <h3>DevOps</h3>
+
+                <p>Docker • Jenkins • CI/CD</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}
