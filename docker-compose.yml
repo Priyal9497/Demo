@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+
+  employee-app:
+
+    build: .
+
+    container_name: employee-management
+
+    ports:
+      - "5000:5000"
+
+    restart: unless-stopped
+
+    volumes:
+      - .:/app
+
+    environment:
+      - PYTHONUNBUFFERED=1
