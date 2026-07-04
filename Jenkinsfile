@@ -17,13 +17,13 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 bat 'python -m pip install --upgrade pip'
-                bat 'pip install -r requirements.txt'
+                bat 'python -m pip install -r requirements.txt'
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat 'pytest'
+                bat 'python -m pytest'
             }
         }
 
@@ -40,7 +40,6 @@ pipeline {
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
-
                     bat '''
                     echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
                     docker push %IMAGE_NAME%
@@ -52,13 +51,13 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 bat '''
-                docker stop %CONTAINER_NAME% || exit 0
-                docker rm %CONTAINER_NAME% || exit 0
+                docker stop %CONTAINER_NAME%
+                if %ERRORLEVEL% NEQ 0 echo Container not running.
 
-                docker run -d ^
-                --name %CONTAINER_NAME% ^
-                -p 5000:5000 ^
-                %IMAGE_NAME%
+                docker rm %CONTAINER_NAME%
+                if %ERRORLEVEL% NEQ 0 echo Container does not exist.
+
+                docker run -d --name %CONTAINER_NAME% -p 5000:5000 %IMAGE_NAME%
                 '''
             }
         }
@@ -71,6 +70,10 @@ pipeline {
 
         failure {
             echo 'Pipeline Failed!'
+        }
+
+        always {
+            cleanWs()
         }
     }
 }
